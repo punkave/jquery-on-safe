@@ -18,7 +18,9 @@ Run an event handler with a [delegation selector](http://api.jquery.com/on/#dire
 </div>
 ```
 
-Running `$('.area.outer').find('.content-menu')` on the above markup will return all five instances of `.content-menu`. If we try to solve this by using `:not` in a naive way, it will reject everything, because the original div also has the class `area`.
+Running `$('.area.outer').on('click', '.content-menu', function(...))` on the above markup will receive events for all five instances of `content-menu`, including the one nested in a second `area`.
+
+If we try to solve this by using `:not` in a naive way, it will reject everything, because the original div also has the class `area`.
 
 ### Solution: `$.onSafe('click', selector, ignore)`
 
