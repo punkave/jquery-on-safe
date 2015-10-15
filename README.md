@@ -1,4 +1,4 @@
-# `jquery.onSafe`
+# jquery.onSafe
 
 Run an event handler with a [delegation selector](http://api.jquery.com/on/#direct-and-delegated-events), but ignore matches nested within a second selector. Helps you cope with nested controls.
 
