@@ -1,6 +1,6 @@
 # jquery.onSafe
 
-Run an event handler with a [delegation selector](http://api.jquery.com/on/#direct-and-delegated-events), but ignore matches nested within a second selector. Helps you cope with nested controls.
+Run an event handler, optionally with a [delegation selector](http://api.jquery.com/on/#direct-and-delegated-events), but ignore matches nested within a second selector. Helps you cope with nested controls.
 
 <a href="http://apostrophenow.org/"><img src="https://raw.github.com/punkave/jquery-projector/master/logos/logo-box-madefor.png" align="right" /></a>
 
@@ -35,11 +35,24 @@ $('area.outer').onSafe('click', '.content-menu', '.area', function() {
 
 `$.onSafe` works with arbitrarily nested elements.
 
-### About bubbling
+### Event handlers without delegation
+
+`$.onSafe` also works with only three arguments when the event is bubbling up to the element itself:
+
+```javascript
+$('area.outer').onSafe('click', '.area', function() {
+  // fires only for the first four content-menus, not the one
+  // in a nested area
+});
+```
+
+### More about bubbling
 
 This plugin will ignore an event that began nested inside the `ignore` selector, *even if the event bubbles up above that level.* Our belief is that this most effectively "firewalls" different nested levels and is closest to the intent of the average programmer trying to make effective use of it.
 
 ## Changelog
+
+0.1.1: three-argument version without a delegation selector.
 
 0.1.0: introduced. Derived from our [jquery-find-safe](http://github.com/punkave/jquery-find-safe)  plugin.
 
