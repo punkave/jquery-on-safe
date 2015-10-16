@@ -27,27 +27,41 @@
 <table class="results">
   <tr><th>Test</th><th>Result</th></tr>
   <tr><th>Nesting</th><td data-test="nesting"></td></tr>
+  <tr><th>"this" has correct value</th><td data-test="nesting-this"></td></tr>
   <tr><th>Nesting (no delegate)</th><td data-test="nesting-no-delegate"></td></tr>
+  <tr><th>"this" has correct value</th><td data-test="nesting-no-delegate-this"></td></tr>
 </table>
 <script type="text/javascript">
   var hits = 0;
+  var isThree;
+  var isOuter;
   // Delegated version
   $('.outer').onSafe('click', '.three', 'ul', function() {
+    if ($(this).hasClass('three')) {
+      isThree = true;
+    }
     hits++;
   });
   $('.three').trigger('click');
   $output = $('[data-test="nesting"]');
   $output.text((hits === 1) ? 'PASS' : 'FAIL');
+  $output = $('[data-test="nesting-this"]');
+  $output.text(isThree ? 'PASS' : 'FAIL');
 
   $('.outer').off();
   hits = 0;
   // Undelegated version
   $('.outer').onSafe('click', 'ul', function() {
+    if ($(this).hasClass('outer')) {
+      isOuter = true;
+    }
     hits++;
   });
   $('.three').trigger('click');
   $output = $('[data-test="nesting-no-delegate"]');
   $output.text((hits === 1) ? 'PASS' : 'FAIL');
+  $output = $('[data-test="nesting-no-delegate-this"]');
+  $output.text(isOuter ? 'PASS' : 'FAIL');
 </script>
 </body>
 </html>

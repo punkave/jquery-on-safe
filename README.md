@@ -52,6 +52,8 @@ This plugin will ignore an event that began nested inside the `ignore` selector,
 
 ## Changelog
 
+0.1.2: value of `this` is correct. More unit test coverage.
+
 0.1.1: three-argument version without a delegation selector.
 
 0.1.0: introduced. Derived from our [jquery-find-safe](http://github.com/punkave/jquery-find-safe)  plugin.

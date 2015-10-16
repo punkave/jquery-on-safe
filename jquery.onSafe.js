@@ -16,6 +16,6 @@ jQuery.fn.onSafe = function(eventType, selector, ignore, fn) {
       // Leave this event alone
       return;
     }
-    return fn(event);
+    fn.call(this, event);
   }
 };
